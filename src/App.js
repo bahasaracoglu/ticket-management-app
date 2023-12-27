@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ApplicationForm from "./components/ApplicationForm";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./components/Login";
 
 function App() {
+  const router = createBrowserRouter([
+    { path: "/basvuru-olustur", element: <ApplicationForm /> },
+    { path: "/admin", element: <Login /> },
+  ]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
 }
