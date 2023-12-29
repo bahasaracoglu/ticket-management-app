@@ -10,10 +10,13 @@ import ApplicationsList from "./components/ApplicationsList";
 import { useContext, useState } from "react";
 import AuthContext from "./context/AuthContext";
 import Successful from "./components/Successful";
+import ApplicationInquiry from "./components/ApplicationInquiry";
+import ApplicationInfo from "./components/ApplicationInfo";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
   const [applicationInfo, setApplicationInfo] = useState(null);
+
   //const currentUser = false;
   console.log(currentUser);
   const RequireAuth = ({ children }) => {
@@ -27,6 +30,14 @@ function App() {
     {
       path: "/basvuru-basarili",
       element: <Successful applicationInfo={applicationInfo} />,
+    },
+    {
+      path: "/basvuru-sorgula",
+      element: <ApplicationInquiry />,
+    },
+    {
+      path: "/basvuru/:basvuruNo",
+      element: <ApplicationInfo />,
     },
     { path: "/admin", element: <Login /> },
     {
