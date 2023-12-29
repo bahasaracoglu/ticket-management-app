@@ -3,6 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 const schema = yup
   .object({
@@ -19,6 +22,8 @@ function Login() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const navigate = useNavigate();
+  const { setCurrentUser } = useContext(AuthContext);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -27,6 +32,8 @@ function Login() {
         // Signed up
         const user = userCredential.user;
         console.log(user);
+        setCurrentUser(user);
+        navigate("/admin/basvuru-listesi");
         // ...
       })
       .catch((error) => {
@@ -55,6 +62,7 @@ function Login() {
         <label className="flex justify-between font-bold">
           Şifre:
           <input
+            type="password"
             defaultValue="test"
             {...register("password", { required: true })}
             className="font-normal"

@@ -1,6 +1,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { addDoc, collection, doc, setDoc, Timestamp } from "firebase/firestore";
+import { db, storage } from "../firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
+
 const schema = yup
   .object({
     firstName: yup.string().required("Bu alanın doldurulması zorunludur."),
@@ -21,7 +26,7 @@ const schema = yup
   })
   .required();
 
-function ApplicationForm() {
+function ApplicationForm({ setApplicationInfo }) {
   const {
     register,
     handleSubmit,
@@ -29,7 +34,64 @@ function ApplicationForm() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
+  const onSubmit = async (data) => {
+    try {
+      let docData = {};
+      const fileName = new Date().getTime() + data.additionalFile[0].name;
+      const fileRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(fileRef, "files");
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.error("Error during upload:", error);
+        },
+        async () => {
+          try {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+            console.log(typeof downloadURL);
+            console.log("File available at", downloadURL);
+            console.log(downloadURL);
+            docData = {
+              ...data,
+              additionalFile: downloadURL,
+              createdAt: Timestamp.now(),
+            };
+
+            const res = await addDoc(collection(db, "applications"), docData);
+
+            console.log(res.id);
+
+            console.log("downloaded", docData);
+
+            setApplicationInfo({ ...docData, id: res.id });
+
+            navigate("/basvuru-basarili");
+
+            // Now that the download URL is available, resolve the promise
+          } catch (error) {
+            console.error("Error getting download URL:", error);
+          }
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //console.log(watch("firstName")); // watch input value by passing the name of it
 
