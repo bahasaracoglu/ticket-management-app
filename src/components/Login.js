@@ -44,37 +44,39 @@ function Login() {
       });
   };
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col p-8 gap-4 "
-    >
-      <h1 className="pt-8 pb-8 font-bold text-xl">Login Form</h1>
-      <div className="flex flex-col gap-4  ">
-        <label className="flex justify-between font-bold">
-          Kullanıcı Adı:
-          <input
-            defaultValue="test"
-            {...register("username", { required: true })}
-            className="font-normal"
-          />
-        </label>{" "}
-        <p className=" text-red-500">{errors.username?.message}</p>
-        <label className="flex justify-between font-bold">
-          Şifre:
-          <input
-            type="password"
-            defaultValue="test"
-            {...register("password", { required: true })}
-            className="font-normal"
-          />
-        </label>
-        <p className=" text-red-500">{errors.password?.message}</p>
-      </div>
+    <section className="min-h-screen flex flex-col align-middle justify-center">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col m-8  p-8 gap-4 rounded-xl  bg-white shadow-xl  "
+      >
+        <h1 className="pt-8 pb-8  font-bold text-xl">Admin Girişi</h1>
+        <div className="flex flex-col gap-4 ">
+          <label className="flex  font-bold gap-2 max-w-full ">
+            Kullanıcı Adı:
+            <input
+              defaultValue="test"
+              {...register("username", { required: true })}
+              className="font-normal p-2 bg-gray-100 rounded-xl "
+            />
+          </label>{" "}
+          <p className=" text-red-500">{errors.username?.message}</p>
+          <label className="flex justify-between font-bold">
+            Şifre:
+            <input
+              type="password"
+              defaultValue="test"
+              {...register("password", { required: true })}
+              className="font-normal p-2 bg-gray-100 rounded-xl"
+            />
+          </label>
+          <p className=" text-red-500">{errors.password?.message}</p>
+        </div>
 
-      {errors.exampleRequired && <span>This field is required</span>}
+        {errors.exampleRequired && <span>This field is required</span>}
 
-      <input type="submit" />
-    </form>
+        <input type="submit" />
+      </form>
+    </section>
   );
 }
 

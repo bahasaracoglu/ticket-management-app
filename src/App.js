@@ -12,6 +12,9 @@ import AuthContext from "./context/AuthContext";
 import Successful from "./components/Successful";
 import ApplicationInquiry from "./components/ApplicationInquiry";
 import ApplicationInfo from "./components/ApplicationInfo";
+import UpdateApplication from "./components/UpdateApplication";
+import Admin from "./components/AdminMenu";
+import AdminMenu from "./components/AdminMenu";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -23,6 +26,7 @@ function App() {
     return currentUser ? children : <Navigate to="/admin" />;
   };
   const router = createBrowserRouter([
+    { path: "*", element: <Navigate to="/basvuru-olustur" /> },
     {
       path: "/basvuru-olustur",
       element: <ApplicationForm setApplicationInfo={setApplicationInfo} />,
@@ -40,17 +44,32 @@ function App() {
       element: <ApplicationInfo />,
     },
     { path: "/admin", element: <Login /> },
+
     {
       path: "/admin/basvuru-listesi",
       element: (
         <RequireAuth>
+          <AdminMenu />
           <ApplicationsList />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: "/admin/basvuru-listesi/:basvuruNo",
+      element: (
+        <RequireAuth>
+          <AdminMenu />
+          <UpdateApplication />
         </RequireAuth>
       ),
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div className="app">
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;
