@@ -5,6 +5,7 @@ import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const schema = yup
   .object({
@@ -30,6 +31,7 @@ const schema = yup
   .required();
 
 function ApplicationForm({ setApplicationInfo }) {
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -40,6 +42,7 @@ function ApplicationForm({ setApplicationInfo }) {
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     try {
+      setLoading(true);
       let docData = {};
       if (data.additionalFile[0]) {
         const fileName = new Date().getTime() + data.additionalFile[0].name;
@@ -111,8 +114,10 @@ function ApplicationForm({ setApplicationInfo }) {
 
         navigate("/basvuru-basarili");
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -120,7 +125,7 @@ function ApplicationForm({ setApplicationInfo }) {
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <section className="min-h-screen flex  justify-center   ">
+    <section className="min-h-screen flex  justify-center items-center  ">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col my-6  w-5/6  p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl  "
@@ -128,8 +133,8 @@ function ApplicationForm({ setApplicationInfo }) {
         <h1 className="pt-8 pb-8  font-bold text-xl  rounded-xl text-center">
           Başvuru Formu
         </h1>
-        <div className="flex flex-col gap-2  ">
-          <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 md:flex-row flex-wrap justify-between ">
+          <div className="flex flex-col gap-2 md:w-[45%]  ">
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">İsim</span>
               <input
@@ -143,7 +148,7 @@ function ApplicationForm({ setApplicationInfo }) {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 md:w-[45%] ">
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Soyisim</span>
               <input
@@ -157,7 +162,7 @@ function ApplicationForm({ setApplicationInfo }) {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 md:w-[45%]">
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Yaş</span>
               <input
@@ -171,7 +176,7 @@ function ApplicationForm({ setApplicationInfo }) {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 md:w-[45%]">
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">T.C. Kimlik Numarası</span>
               <input
@@ -185,7 +190,7 @@ function ApplicationForm({ setApplicationInfo }) {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 md:w-[45%]">
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Başvuru Nedeni</span>
               <input
@@ -198,7 +203,7 @@ function ApplicationForm({ setApplicationInfo }) {
               {errors.purposeOfApp?.message}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 md:w-[45%]">
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Adres Bilgisi</span>
               <input
@@ -229,10 +234,18 @@ function ApplicationForm({ setApplicationInfo }) {
           </p>
         </div>
 
-        <input
-          className="p-2 text-white bg-sky-600 font-bold rounded-xl"
-          type="submit"
-        />
+        <div className="flex flex-col gap-2">
+          {/* Yüklenme durumuna göre button rengini ve içeriğini değiştir */}
+          <button
+            className={`p-2 text-white font-bold rounded-xl ${
+              loading ? "bg-gray-500" : "bg-sky-600"
+            }`}
+            type="submit"
+            disabled={loading} // Yüklenme durumundayken butonu devre dışı bırak
+          >
+            {loading ? "Yükleniyor..." : "Gönder"}
+          </button>
+        </div>
       </form>
     </section>
   );
