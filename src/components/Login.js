@@ -1,10 +1,10 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 
 const schema = yup
@@ -19,14 +19,23 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(schema),
   });
   const navigate = useNavigate();
   const { setCurrentUser } = useContext(AuthContext);
+  const [isInvalid, setIsInvalid] = useState(false);
+
+  console.log(isInvalid);
+
+  useEffect(() => {
+    setIsInvalid(false);
+  }, [watch("username")]);
 
   const onSubmit = (data) => {
     console.log(data);
+
     signInWithEmailAndPassword(auth, data.username, data.password)
       .then((userCredential) => {
         // Signed up
@@ -38,6 +47,7 @@ function Login() {
       })
       .catch((error) => {
         console.log(error);
+        setIsInvalid(true);
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
@@ -54,13 +64,12 @@ function Login() {
           <label className="flex  font-bold gap-2 max-w-full ">
             Kullanıcı Adı:
             <input
-              defaultValue="test"
               {...register("username", { required: true })}
-              className="font-normal p-2 bg-gray-100 rounded-xl "
+              className="font-normal p-2 bg-gray-100 rounded-xl w-full "
             />
-          </label>{" "}
+          </label>
           <p className=" text-red-500">{errors.username?.message}</p>
-          <label className="flex justify-between font-bold">
+          <label className="flex justify-between font-bold items-center">
             Şifre:
             <input
               type="password"
@@ -74,7 +83,15 @@ function Login() {
 
         {errors.exampleRequired && <span>This field is required</span>}
 
-        <input type="submit" />
+        <input
+          className="p-2 text-white bg-sky-600 font-bold rounded-xl"
+          type="submit"
+        />
+        {isInvalid && (
+          <div className=" bg-rose-100 border-red-400 border p-2 text-center ">
+            Kullanıcı adı veya şifre hatalı!
+          </div>
+        )}
       </form>
     </section>
   );

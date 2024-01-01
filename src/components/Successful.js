@@ -6,7 +6,6 @@ function Successful({ applicationInfo }) {
       {applicationInfo && (
         <section className="flex flex-col my-6 w-5/6  p-8 gap-4 rounded-xl bg-white shadow-xl lg:w-3/6">
           <h1 className=" font-bold text-xl">
-            {" "}
             Teşekkürler, başvurunuz alınmıştır.
           </h1>
           <h2 className=" font-medium">Başvuru Detayları:</h2>
