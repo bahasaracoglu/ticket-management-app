@@ -22,6 +22,7 @@ const schema = yup
       .positive()
       .typeError("Geçerli bir değer giriniz.")
       .min(10000000000, "11 haneli T.C. No giriniz.")
+      .max(99999999999, "11 haneli T.C. No giriniz.")
       .integer()
       .required("Geçerli bir değer giriniz."),
     purposeOfApp: yup.string().required("Bu alan zorunludur."),
