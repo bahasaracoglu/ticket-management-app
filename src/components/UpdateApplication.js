@@ -54,10 +54,10 @@ function UpdateApplication() {
     try {
       const docRef = doc(db, "applications", appId);
       const docSnap = await getDoc(docRef);
-      console.log("data geldi", docSnap.data());
+      // console.log("data geldi", docSnap.data());
 
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
+        // console.log("Document data:", docSnap.data());
         const dateObj = docSnap.data().createdAt.toDate();
         setCreatedDate(dateObj.toLocaleDateString("tr-TR"));
         setApplicationData(docSnap.data());
