@@ -77,7 +77,7 @@ function ApplicationForm({ setApplicationInfo }) {
                 ...data,
                 additionalFile: downloadURL,
                 createdAt: Timestamp.now(),
-                status: "Çözülmedi",
+                status: "Bekliyor",
                 response: "",
               };
               const res = await addDoc(collection(db, "applications"), docData);
@@ -96,7 +96,7 @@ function ApplicationForm({ setApplicationInfo }) {
           ...data,
           additionalFile: "", // veya null olarak ayarlayabilirsiniz
           createdAt: Timestamp.now(),
-          status: "Çözülmedi",
+          status: "Bekliyor",
           response: "",
         };
         const res = await addDoc(collection(db, "applications"), docData);

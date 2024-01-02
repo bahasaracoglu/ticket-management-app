@@ -14,6 +14,7 @@ function UpdateApplication() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [responseModalVisible, setResponseModalVisible] = useState(false);
   const [responseInput, setResponseInput] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState(null);
 
   const handleResponseButtonClick = () => {
     setResponseModalVisible(true);
@@ -35,16 +36,19 @@ function UpdateApplication() {
   const handleUpdateStatusClick = () => {
     setShowConfirmationModal(true);
   };
+  const handleSelectStatus = (status) => {
+    setSelectedStatus(status);
+  };
 
   const handleConfirmUpdateStatus = async () => {
-    setLoading(true);
-    const updateRef = doc(db, "applications", appId);
-    await updateDoc(updateRef, {
-      status: applicationData.status === "Çözüldü" ? "Çözülmedi" : "Çözüldü",
-    });
-    fetchData();
-    setLoading(false);
-    setShowConfirmationModal(false);
+    if (selectedStatus) {
+      setLoading(true);
+      const updateRef = doc(db, "applications", appId);
+      await updateDoc(updateRef, { status: selectedStatus });
+      fetchData();
+      setLoading(false);
+      setShowConfirmationModal(false);
+    }
   };
 
   const handleCancelUpdateStatus = () => {
@@ -102,16 +106,40 @@ function UpdateApplication() {
           <ul className="bg-slate-200 p-4 rounded-xl flex flex-col gap-4 ">
             {showConfirmationModal && (
               <div className="fixed inset-0  bg-black bg-opacity-50 flex items-center justify-center">
-                <div className="bg-white p-4 rounded-md  w-[93%] max-w-[500px]">
-                  <p>
-                    Başvuru durumunu{" "}
-                    <span className="font-bold">
-                      {applicationData.status === "Çözüldü"
-                        ? " çözülmedi "
-                        : " çözüldü "}
-                    </span>
-                    olarak değiştirmek istediğinize emin misiniz?
-                  </p>
+                <div className="bg-white p-4 rounded-md w-[93%] max-w-[500px]">
+                  <p>Yeni başvuru durumunu seçin:</p>
+                  <div className="flex justify-between mt-4 gap-1">
+                    <button
+                      onClick={() => handleSelectStatus("Çözüldü")}
+                      className={`p-2 text-white font-bold rounded-md w-full ${
+                        selectedStatus === "Çözüldü"
+                          ? "bg-emerald-600"
+                          : "bg-gray-400"
+                      }`}
+                    >
+                      Çözüldü
+                    </button>
+                    <button
+                      onClick={() => handleSelectStatus("Bekliyor")}
+                      className={`p-2 text-white font-bold rounded-md w-full ${
+                        selectedStatus === "Bekliyor"
+                          ? "bg-amber-600"
+                          : "bg-gray-400"
+                      }`}
+                    >
+                      Bekliyor
+                    </button>
+                    <button
+                      onClick={() => handleSelectStatus("İptal Edildi")}
+                      className={`p-2 text-white font-bold rounded-md w-full ${
+                        selectedStatus === "İptal Edildi"
+                          ? "bg-red-600"
+                          : "bg-gray-400"
+                      }`}
+                    >
+                      İptal Edildi
+                    </button>
+                  </div>
                   <div className="flex justify-end mt-4">
                     <button
                       onClick={handleCancelUpdateStatus}
@@ -128,7 +156,7 @@ function UpdateApplication() {
                   </div>
                 </div>
               </div>
-            )}{" "}
+            )}
             {responseModalVisible && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ">
                 <div className="bg-white p-4 rounded-md  w-[93%] max-w-[500px]">
@@ -202,13 +230,19 @@ function UpdateApplication() {
               <span className="font-medium w-1/2">Başvuru Durumu </span>
 
               <span className="ml-auto text-left w-1/2 overflow-hidden overflow-ellipsis">
-                {applicationData.status === "Çözüldü" ? (
+                {applicationData.status === "Çözüldü" && (
                   <span className=" text-emerald-700 font-medium">
-                    {applicationData.status}
+                    {applicationData.status}{" "}
                   </span>
-                ) : (
-                  <span className=" text-orange-600 font-medium">
-                    {applicationData.status}
+                )}
+                {applicationData.status === "Bekliyor" && (
+                  <span className=" text-yellow-600 font-medium">
+                    {applicationData.status}{" "}
+                  </span>
+                )}
+                {applicationData.status === "İptal Edildi" && (
+                  <span className=" text-red-600 font-medium">
+                    {applicationData.status}{" "}
                   </span>
                 )}
               </span>

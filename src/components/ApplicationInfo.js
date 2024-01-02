@@ -101,13 +101,19 @@ function ApplicationInfo() {
               <li className="flex justify-between items-center border-b border-indigo-200 pb-2">
                 <span className="font-medium w-1/2">Başvuru Durumu</span>
                 <span className="ml-auto text-left w-1/2 overflow-hidden overflow-ellipsis">
-                  {applicationData.status === "Çözüldü" ? (
+                  {applicationData.status === "Çözüldü" && (
                     <span className=" text-emerald-700 font-medium">
-                      {applicationData.status}
+                      {applicationData.status}{" "}
                     </span>
-                  ) : (
-                    <span className=" text-orange-600 font-medium">
-                      {applicationData.status}
+                  )}
+                  {applicationData.status === "Bekliyor" && (
+                    <span className=" text-yellow-600 font-medium">
+                      {applicationData.status}{" "}
+                    </span>
+                  )}
+                  {applicationData.status === "İptal Edildi" && (
+                    <span className=" text-red-600 font-medium">
+                      {applicationData.status}{" "}
                     </span>
                   )}
                 </span>

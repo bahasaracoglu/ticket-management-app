@@ -54,7 +54,7 @@ function Login() {
     <section className="min-h-screen flex  justify-center items-center  ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col my-6  w-5/6  p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl  "
+        className="flex flex-col  my-6 w-[93%] p-4 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl md:p-8  "
       >
         <h1 className="pt-8 pb-8  font-bold text-xl">Admin Girişi</h1>
         <div className="flex flex-col gap-2 md:flex-row flex-wrap justify-between ">
