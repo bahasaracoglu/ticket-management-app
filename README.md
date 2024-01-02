@@ -24,4 +24,8 @@ Projeyi çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
 /admin/basvuru/{basvuruNo}: Admin panelinde başvurunun detayları ve durumu.
 
 # Ekran Görüntüleri
-![/basvuru-olustur ](public/screenshots/Ekran görüntüsü 2024-01-02 065330.png)
+![/basvuru-olustur ](https://github.com/bahasaracoglu/final-case-patika/blob/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065330.png)
+
+![/basarili ](https://github.com/bahasaracoglu/final-case-patika/blob/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065404.png)
+
+![/admin ](https://github.com/bahasaracoglu/final-case-patika/blob/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065512.png)
