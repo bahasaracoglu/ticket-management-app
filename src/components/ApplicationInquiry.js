@@ -59,10 +59,10 @@ function ApplicationInquiry() {
     <section className="min-h-screen flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col my-6 w-5/6 p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl"
+        className="flex flex-col my-6 w-[93%] p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl  "
       >
         <h1 className="pt-8 pb-8 font-bold text-xl">Başvuru Sorgula</h1>
-        <div className="flex flex-col gap-4  ">
+        <div className="flex flex-col gap-2  ">
           <label className="flex flex-col justify-between font-bold gap-2">
             Başvuru No:
             <input
@@ -70,10 +70,12 @@ function ApplicationInquiry() {
               {...register("applicationNo", { required: true })}
               className="font-normal p-2 bg-gray-100 rounded-xl outline-blue-400 w-full"
             />
-          </label>
+          </label>{" "}
+          <p className=" text-sm text-red-500 min-h-6">
+            {errors.applicationNo?.message}
+          </p>
         </div>
-        {errors.exampleRequired && <span>This field is required</span>}
-        <div className="flex flex-col gap-2 h-24 justify-center">
+        <div className="flex flex-col gap-2 h-20 justify-center">
           {/* Yüklenme durumuna göre button rengini ve içeriğini değiştir */}
           <button
             className={`p-2 text-white font-bold rounded-xl ${

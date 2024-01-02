@@ -128,9 +128,9 @@ function ApplicationForm({ setApplicationInfo }) {
     <section className="min-h-screen flex  justify-center items-center  ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col my-6  w-5/6  p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl  "
+        className="flex flex-col my-6 w-[93%] p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl  "
       >
-        <h1 className="pt-8 pb-8  font-bold text-xl  rounded-xl text-center">
+        <h1 className="pt-8 pb-8  font-bold text-2xl rounded-xl ">
           Başvuru Formu
         </h1>
         <div className="flex flex-col gap-2 md:flex-row flex-wrap justify-between ">
@@ -138,7 +138,7 @@ function ApplicationForm({ setApplicationInfo }) {
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">İsim</span>
               <input
-                defaultValue="test"
+                placeholder="İsim"
                 {...register("firstName", { required: true })}
                 className="font-normal p-2 bg-gray-100 rounded-xl outline-blue-400 w-full shadow-sm"
               />{" "}
@@ -152,7 +152,7 @@ function ApplicationForm({ setApplicationInfo }) {
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Soyisim</span>
               <input
-                defaultValue="test"
+                placeholder="Soyisim"
                 {...register("lastName", { required: true })}
                 className="font-normal p-2 bg-gray-100 rounded-xl  outline-blue-400 w-full"
               />
@@ -166,7 +166,7 @@ function ApplicationForm({ setApplicationInfo }) {
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Yaş</span>
               <input
-                defaultValue="28"
+                placeholder="Yaş"
                 {...register("age", { required: true })}
                 className="font-normal p-2 bg-gray-100 rounded-xl  outline-blue-400 w-full"
               />
@@ -180,7 +180,7 @@ function ApplicationForm({ setApplicationInfo }) {
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">T.C. Kimlik Numarası</span>
               <input
-                defaultValue="13246545654"
+                placeholder="T.C. Kimlik Numarası"
                 {...register("tcNo", { required: true })}
                 className="font-normal p-2 bg-gray-100 rounded-xl w-full  outline-blue-400"
               />
@@ -194,7 +194,7 @@ function ApplicationForm({ setApplicationInfo }) {
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Başvuru Nedeni</span>
               <input
-                defaultValue="test"
+                placeholder="Başvuru Nedeni"
                 {...register("purposeOfApp", { required: true })}
                 className="font-normal p-2 bg-gray-100 rounded-xl w-full  outline-blue-400"
               />
@@ -207,7 +207,7 @@ function ApplicationForm({ setApplicationInfo }) {
             <label className="flex flex-col justify-between font-bold gap-2">
               <span className=" font-medium ">Adres Bilgisi</span>
               <input
-                defaultValue="test"
+                placeholder="Adres Bilgisi"
                 {...register("address", { required: true })}
                 className="font-normal p-2 bg-gray-100 rounded-xl w-full  outline-blue-400"
               />
@@ -218,7 +218,7 @@ function ApplicationForm({ setApplicationInfo }) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 ">
           <label className="flex flex-col justify-between font-bold gap-2">
             <span className=" font-medium ">Fotoğraflar/Ekler</span>
             <input
@@ -226,7 +226,14 @@ function ApplicationForm({ setApplicationInfo }) {
               id="myFile"
               name="filename"
               {...register("additionalFile", { required: false })}
-              className="font-normal"
+              className="block w-full text-sm text-slate-500
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-full file:border-0
+              file:text-sm file:font-semibold
+              file:bg-violet-50 file:text-violet-700
+              hover:file:bg-violet-100
+               overflow-ellipsis
+            "
             />
           </label>
           <p className=" text-sm text-red-500 min-h-6">
@@ -235,13 +242,12 @@ function ApplicationForm({ setApplicationInfo }) {
         </div>
 
         <div className="flex flex-col gap-2">
-          {/* Yüklenme durumuna göre button rengini ve içeriğini değiştir */}
           <button
             className={`p-2 text-white font-bold rounded-xl ${
               loading ? "bg-gray-500" : "bg-sky-600"
             }`}
             type="submit"
-            disabled={loading} // Yüklenme durumundayken butonu devre dışı bırak
+            disabled={loading}
           >
             {loading ? "Yükleniyor..." : "Gönder"}
           </button>

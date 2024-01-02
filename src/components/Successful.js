@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useNavigate } from "react-router-dom";
 
 function Successful({ applicationInfo }) {
   const [copied, setCopied] = useState(false);
+  const navigate = useNavigate();
 
   const handleCopy = () => {
     setCopied(true);
@@ -12,7 +14,7 @@ function Successful({ applicationInfo }) {
   return (
     <div className="min-h-screen flex justify-center items-center">
       {applicationInfo && (
-        <section className="flex flex-col my-6 w-5/6 p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl">
+        <section className="flex flex-col my-6 w-[93%] p-8 gap-4 rounded-xl max-w-screen-md bg-white shadow-xl">
           <h1 className="font-bold text-xl">
             Teşekkürler, başvurunuz alınmıştır.
           </h1>
@@ -42,15 +44,23 @@ function Successful({ applicationInfo }) {
                 {applicationInfo.id}
               </span>
             </li>
-            <div className="">
+            <div className="flex flex-col gap-2 justify-center">
+              {copied && (
+                <span className=" text-green-600 text-center">Kopyalandı!</span>
+              )}
               <CopyToClipboard text={applicationInfo.id} onCopy={handleCopy}>
-                <button className="p-2 max-w-20 bg-sky-600 text-white rounded-md cursor-pointer">
-                  Kopyala
+                <button className="p-2 w-full bg-sky-600 text-white rounded-md cursor-pointer">
+                  Başvuru Kodunu Kopyala
                 </button>
               </CopyToClipboard>
-              {copied && (
-                <span className="ml-4 text-green-600">Kopyalandı!</span>
-              )}
+              <div>
+                <button
+                  className="p-2 w-full bg-emerald-600 text-white rounded-md cursor-pointer"
+                  onClick={() => navigate("/basvuru-sorgula")}
+                >
+                  Başvuru Sorgula
+                </button>
+              </div>
             </div>
           </ul>
         </section>

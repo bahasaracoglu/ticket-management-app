@@ -49,16 +49,14 @@ function App() {
       path: "/admin/basvuru-listesi",
       element: (
         <RequireAuth>
-          <AdminMenu />
           <ApplicationsList />
         </RequireAuth>
       ),
     },
     {
-      path: "/admin/basvuru-listesi/:basvuruNo",
+      path: "/admin/basvuru/:basvuruNo",
       element: (
         <RequireAuth>
-          <AdminMenu />
           <UpdateApplication />
         </RequireAuth>
       ),
