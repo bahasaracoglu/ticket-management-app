@@ -24,3 +24,4 @@ Projeyi çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
 /admin/basvuru/{basvuruNo}: Admin panelinde başvurunun detayları ve durumu.
 
 # Ekran Görüntüleri
+![/basvuru-olustur ](public/screenshots/Ekran görüntüsü 2024-01-02 065330.png)
