@@ -13,15 +13,13 @@ import Successful from "./components/Successful";
 import ApplicationInquiry from "./components/ApplicationInquiry";
 import ApplicationInfo from "./components/ApplicationInfo";
 import UpdateApplication from "./components/UpdateApplication";
-import Admin from "./components/AdminMenu";
-import AdminMenu from "./components/AdminMenu";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
   const [applicationInfo, setApplicationInfo] = useState(null);
 
   //const currentUser = false;
-  console.log(currentUser);
+  // console.log(currentUser);
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/admin" />;
   };

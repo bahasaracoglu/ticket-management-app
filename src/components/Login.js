@@ -1,4 +1,4 @@
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -28,24 +28,21 @@ function Login() {
   const [isInvalid, setIsInvalid] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  console.log(isInvalid);
-
+  // console.log(isInvalid);
   useEffect(() => {
     setIsInvalid(false);
   }, [watch("username"), watch("password")]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     setLoading(true);
-
     signInWithEmailAndPassword(auth, data.username + "@xyz.com", data.password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         setCurrentUser(user);
         navigate("/admin/basvuru-listesi");
-        // ...
       })
       .catch((error) => {
         console.log(error);
@@ -63,9 +60,10 @@ function Login() {
         <div className="flex flex-col gap-2 md:flex-row flex-wrap justify-between ">
           <div className="flex flex-col gap-2 md:w-[45%]  ">
             <label className="flex flex-col justify-between font-bold gap-2">
-              Kullanıcı Adı:
+              Kullanıcı Adı
               <input
                 {...register("username", { required: true })}
+                placeholder="Kullanıcı Adı"
                 className="font-normal p-2 bg-gray-100 rounded-xl outline-blue-400 w-full shadow-sm"
               />
             </label>{" "}
@@ -74,10 +72,10 @@ function Login() {
 
           <div className="flex flex-col gap-2 md:w-[45%]  ">
             <label className="flex flex-col justify-between font-bold gap-2">
-              Şifre:
+              Şifre
               <input
                 type="password"
-                defaultValue="test"
+                placeholder="Şifre"
                 {...register("password", { required: true })}
                 className="font-normal p-2 bg-gray-100 rounded-xl outline-blue-400 w-full shadow-sm"
               />

@@ -7,7 +7,7 @@ import AdminMenu from "./AdminMenu";
 
 function UpdateApplication() {
   const appId = useParams().basvuruNo;
-  console.log(appId);
+  // console.log(appId);
   const [applicationData, setApplicationData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [createdDate, setCreatedDate] = useState(null);

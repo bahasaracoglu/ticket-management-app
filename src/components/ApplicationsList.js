@@ -12,8 +12,7 @@ function ApplicationsList() {
     const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "applications"));
-        console.log(querySnapshot);
-
+        // console.log(querySnapshot);
         if (querySnapshot) {
           const applications = querySnapshot.docs.map((doc) => ({
             id: doc.id,
@@ -29,8 +28,8 @@ function ApplicationsList() {
       }
     };
 
-    fetchData(); // Veriyi çekmek için işlevi çağırın.
-  }, []); // useEffect'i sadece applicationId değiştiğinde çalıştır
+    fetchData();
+  }, []);
   return (
     <section className="min-h-screen flex flex-col justify-center items-center">
       <AdminMenu className="flex self-start  w-[93%] bg-indigo-400 text-white font-medium p-4  rounded-xl max-w-screen-md mt-4" />

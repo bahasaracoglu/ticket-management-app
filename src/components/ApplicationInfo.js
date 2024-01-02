@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Timestamp, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useParams } from "react-router-dom";
 import Loader from "./Loader";
@@ -17,10 +17,10 @@ function ApplicationInfo() {
       try {
         const docRef = doc(db, "applications", applicationId);
         const docSnap = await getDoc(docRef);
-        console.log(docSnap);
+        // console.log(docSnap);
 
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
+          // console.log("Document data:", docSnap.data());
           setApplicationData(docSnap.data());
           const dateObj = docSnap.data().createdAt.toDate();
           setCreatedDate(dateObj.toLocaleDateString("tr-TR"));
@@ -35,8 +35,8 @@ function ApplicationInfo() {
       }
     };
 
-    fetchData(); // Veriyi çekmek için işlevi çağırın.
-  }, [applicationId]); // useEffect'i sadece applicationId değiştiğinde çalıştır
+    fetchData();
+  }, [applicationId]);
 
   return (
     <section className="min-h-screen flex justify-center items-center">

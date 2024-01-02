@@ -54,13 +54,13 @@ function ApplicationForm({ setApplicationInfo }) {
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
+            // console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
               case "paused":
-                console.log("Upload is paused");
+                // console.log("Upload is paused");
                 break;
               case "running":
-                console.log("Upload is running");
+                // console.log("Upload is running");
                 break;
               default:
             }
@@ -79,15 +79,10 @@ function ApplicationForm({ setApplicationInfo }) {
                 status: "Çözülmedi",
                 response: "",
               };
-
               const res = await addDoc(collection(db, "applications"), docData);
-
-              console.log(res.id);
-
-              console.log("downloaded", docData);
-
+              // console.log(res.id);
+              // console.log("downloaded", docData);
               setApplicationInfo({ ...docData, id: res.id });
-
               navigate("/basvuru-basarili");
             } catch (error) {
               console.error("Error getting download URL:", error);
@@ -103,15 +98,10 @@ function ApplicationForm({ setApplicationInfo }) {
           status: "Çözülmedi",
           response: "",
         };
-
         const res = await addDoc(collection(db, "applications"), docData);
-
-        console.log(res.id);
-
-        console.log("downloaded", docData);
-
+        // console.log(res.id);
+        // console.log("downloaded", docData);
         setApplicationInfo({ ...docData, id: res.id });
-
         navigate("/basvuru-basarili");
       }
       setLoading(false);

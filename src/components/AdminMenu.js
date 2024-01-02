@@ -1,7 +1,7 @@
 import { getAuth, signOut } from "firebase/auth";
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AdminMenu() {
   const auth = getAuth();

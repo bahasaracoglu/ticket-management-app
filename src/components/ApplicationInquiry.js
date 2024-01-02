@@ -28,7 +28,6 @@ function ApplicationInquiry() {
     setIsInvalid(false);
   }, [watch("applicationNo")]);
   const navigate = useNavigate();
-
   const checkApplication = async (data) => {
     try {
       setLoading(true);
@@ -36,7 +35,7 @@ function ApplicationInquiry() {
       const docSnap = await getDoc(docRef);
       console.log(docSnap);
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
+        // console.log("Document data:", docSnap.data());
         navigate(`/basvuru/${data.applicationNo}`);
       } else {
         console.log("No such document!");
@@ -47,8 +46,7 @@ function ApplicationInquiry() {
       console.log(error);
       setLoading(false);
     }
-
-    console.log(data);
+    // console.log(data);
   };
 
   const onSubmit = (data) => {
@@ -64,25 +62,24 @@ function ApplicationInquiry() {
         <h1 className="pt-8 pb-8 font-bold text-xl">Başvuru Sorgula</h1>
         <div className="flex flex-col gap-2  ">
           <label className="flex flex-col justify-between font-bold gap-2">
-            Başvuru No:
+            Başvuru No
             <input
-              defaultValue="123456"
+              placeholder="Başvuru No"
               {...register("applicationNo", { required: true })}
               className="font-normal p-2 bg-gray-100 rounded-xl outline-blue-400 w-full"
             />
-          </label>{" "}
+          </label>
           <p className=" text-sm text-red-500 min-h-6">
             {errors.applicationNo?.message}
           </p>
         </div>
         <div className="flex flex-col gap-2 h-20 justify-center">
-          {/* Yüklenme durumuna göre button rengini ve içeriğini değiştir */}
           <button
             className={`p-2 text-white font-bold rounded-xl ${
               loading ? "bg-gray-500" : "bg-sky-600"
             }`}
             type="submit"
-            disabled={loading} // Yüklenme durumundayken butonu devre dışı bırak
+            disabled={loading}
           >
             {loading ? "Yükleniyor..." : "Gönder"}
           </button>
