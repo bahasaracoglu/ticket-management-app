@@ -15,7 +15,7 @@ function ApplicationInfo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const docRef = doc(db, "applications", applicationId);
+        const docRef = doc(db, "applicationspatika", applicationId);
         const docSnap = await getDoc(docRef);
         // console.log(docSnap);
 

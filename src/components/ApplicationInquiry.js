@@ -31,7 +31,7 @@ function ApplicationInquiry() {
   const checkApplication = async (data) => {
     try {
       setLoading(true);
-      const docRef = doc(db, "applications", data.applicationNo);
+      const docRef = doc(db, "applicationspatika", data.applicationNo);
       const docSnap = await getDoc(docRef);
       console.log(docSnap);
       if (docSnap.exists()) {

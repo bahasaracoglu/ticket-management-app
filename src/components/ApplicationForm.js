@@ -80,7 +80,10 @@ function ApplicationForm({ setApplicationInfo }) {
                 status: "Bekliyor",
                 response: "",
               };
-              const res = await addDoc(collection(db, "applications"), docData);
+              const res = await addDoc(
+                collection(db, "applicationspatika"),
+                docData
+              );
               // console.log(res.id);
               // console.log("downloaded", docData);
               setApplicationInfo({ ...docData, id: res.id });
@@ -99,7 +102,7 @@ function ApplicationForm({ setApplicationInfo }) {
           status: "Bekliyor",
           response: "",
         };
-        const res = await addDoc(collection(db, "applications"), docData);
+        const res = await addDoc(collection(db, "applicationspatika"), docData);
         // console.log(res.id);
         // console.log("downloaded", docData);
         setApplicationInfo({ ...docData, id: res.id });

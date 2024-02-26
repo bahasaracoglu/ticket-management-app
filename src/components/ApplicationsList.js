@@ -10,13 +10,14 @@ function ApplicationsList() {
   const [loading, setLoading] = useState(true);
   const fetchData = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, "applications"));
+      const querySnapshot = await getDocs(collection(db, "applicationspatika"));
       // console.log(querySnapshot);
       if (querySnapshot) {
         const applications = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+        console.log();
         setAppList(applications);
         setLoading(false);
       } else {

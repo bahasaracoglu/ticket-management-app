@@ -22,7 +22,7 @@ function UpdateApplication() {
 
   const handleSaveResponse = async () => {
     setLoading(true);
-    const updateRef = doc(db, "applications", appId);
+    const updateRef = doc(db, "applicationspatika", appId);
     await updateDoc(updateRef, { response: responseInput });
     fetchData();
     setLoading(false);
@@ -43,7 +43,7 @@ function UpdateApplication() {
   const handleConfirmUpdateStatus = async () => {
     if (selectedStatus) {
       setLoading(true);
-      const updateRef = doc(db, "applications", appId);
+      const updateRef = doc(db, "applicationspatika", appId);
       await updateDoc(updateRef, { status: selectedStatus });
       fetchData();
       setLoading(false);
@@ -56,7 +56,7 @@ function UpdateApplication() {
   };
   const fetchData = async () => {
     try {
-      const docRef = doc(db, "applications", appId);
+      const docRef = doc(db, "applicationspatika", appId);
       const docSnap = await getDoc(docRef);
       // console.log("data geldi", docSnap.data());
 
