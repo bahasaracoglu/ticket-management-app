@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/7d934e6a-b395-47f9-bede-c853b8d490b7)# Fimple React Bootcamp Final Case - Başvuru/Ticket Yönetim Sistemi
-
 # Deploy
 Bu projenin son halini Vercel üzerinden görüntüleyebilirsiniz: [Proje Linki](https://baha-saracoglu-final-case-patika.vercel.app/basvuru-olustur)
 
@@ -26,7 +24,9 @@ Projeyi çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
 
 # Ekran Görüntüleri
 
-![image](https://github.com/user-attachments/assets/f552a8e4-a714-4bc3-aade-8c7e16cbe41a)
+[![image](https://github.com/user-attachments/assets/f552a8e4-a714-4bc3-aade-8c7e16cbe41a)](https://github.com/bahasaracoglu/ticket-management-app/blob/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065330.png)
 
-![image](https://github.com/user-attachments/assets/8f0980a6-2f6c-4a0f-9fb1-f2fd10465d77)
+[![image](https://github.com/user-attachments/assets/8f0980a6-2f6c-4a0f-9fb1-f2fd10465d77)](https://raw.githubusercontent.com/bahasaracoglu/ticket-management-app/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065404.png)
 
+[https://raw.githubusercontent.com/bahasaracoglu/ticket-management-app/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065512.png
+](https://raw.githubusercontent.com/bahasaracoglu/ticket-management-app/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065512.png)
