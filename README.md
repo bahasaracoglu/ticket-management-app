@@ -28,4 +28,4 @@ Projeyi çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
 
 [![image](https://raw.githubusercontent.com/bahasaracoglu/ticket-management-app/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065404.png)
 
-(https://raw.githubusercontent.com/bahasaracoglu/ticket-management-app/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065512.png)
+[![image](https://raw.githubusercontent.com/bahasaracoglu/ticket-management-app/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065512.png)
