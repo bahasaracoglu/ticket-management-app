@@ -1,4 +1,4 @@
-# Fimple React Bootcamp Final Case - Başvuru/Ticket Yönetim Sistemi
+![image](https://github.com/user-attachments/assets/7d934e6a-b395-47f9-bede-c853b8d490b7)# Fimple React Bootcamp Final Case - Başvuru/Ticket Yönetim Sistemi
 
 # Deploy
 Bu projenin son halini Vercel üzerinden görüntüleyebilirsiniz: [Proje Linki](https://baha-saracoglu-final-case-patika.vercel.app/basvuru-olustur)
@@ -23,9 +23,10 @@ Projeyi çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
 
 /admin/basvuru/{basvuruNo}: Admin panelinde başvurunun detayları ve durumu.
 
+
 # Ekran Görüntüleri
-![/basvuru-olustur ](https://github.com/bahasaracoglu/final-case-patika/blob/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065330.png)
 
-![/basarili ](https://github.com/bahasaracoglu/final-case-patika/blob/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065404.png)
+![image](https://github.com/user-attachments/assets/f552a8e4-a714-4bc3-aade-8c7e16cbe41a)
 
-![/admin ](https://github.com/bahasaracoglu/final-case-patika/blob/main/public/screenshots/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202024-01-02%20065512.png)
+![image](https://github.com/user-attachments/assets/8f0980a6-2f6c-4a0f-9fb1-f2fd10465d77)
+
